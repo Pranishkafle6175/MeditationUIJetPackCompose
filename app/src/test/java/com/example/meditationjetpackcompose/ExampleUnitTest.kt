@@ -1,4 +1,4 @@
-package com.plcoding.meditationuiyoutube
+package com.example.meditationjetpackcompose
 
 import org.junit.Test
 
