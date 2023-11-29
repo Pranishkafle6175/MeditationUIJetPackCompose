@@ -1,9 +1,11 @@
 package com.example.meditationjetpackcompose.ui
 
+import android.graphics.drawable.PaintDrawable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -15,11 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.meditationjetpackcompose.ui.theme.DeepBlue
 import com.example.meditationjetpackcompose.R
-import com.example.meditationjetpackcompose.ui.theme.ButtonBlue
-import com.example.meditationjetpackcompose.ui.theme.DarkerButtonBlue
-import com.example.meditationjetpackcompose.ui.theme.TextWhite
+import com.example.meditationjetpackcompose.ui.theme.*
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
@@ -32,6 +31,7 @@ fun MainScreen(name:String="Pranish"){
         Column {
             Greeting()
             Chips(listOf<String>("Sweet Sleep","Insomnia","Depression"))
+            Dailythought()
         }
     }
 }
@@ -74,7 +74,7 @@ fun Chips(listOf: List<String>) {
         items(listOf.size){
 
             Box(modifier = Modifier
-                .padding(start = 15.dp, top = 15.dp, bottom = 15.dp)
+                .padding(start = 25.dp, top = 15.dp, bottom = 15.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .clickable {
                     selectedChip = it
@@ -87,10 +87,43 @@ fun Chips(listOf: List<String>) {
             ){
                 Text(text = listOf[it], color = TextWhite)
             }
-            
+
         }
     }
-
 }
+
+@Composable
+fun Dailythought(){
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(25.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(pink)
+            .padding(horizontal = 15.dp, vertical = 20.dp)
+    ) {
+        Column {
+            Text(text = "Daily Thought", color = TextWhite, style = MaterialTheme.typography.h1,
+            modifier = Modifier.padding(bottom = 5.dp)
+                )
+            Text(text = "Meditation ~ 3-10 min", color = TextWhite, style = MaterialTheme.typography.h2)
+        }
+
+        Box(modifier = Modifier
+            .size(40.dp)
+            .clip(CircleShape)
+            .background(ButtonBlue)
+            .padding(10.dp)
+            ,
+            Alignment.Center
+        ){
+            Icon(painter = painterResource(R.drawable.ic_play), contentDescription ="Play", tint = TextWhite, modifier = Modifier.size(16.dp))
+        }
+    }
+}
+
 
 
